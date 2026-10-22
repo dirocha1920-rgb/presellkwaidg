@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- xTracky Tracking Script v2 -->
+  <script
+      src="https://cdn.xtracky.com/scripts/utm-handler.js"
+      data-token="e9216e8f-23df-4b2a-819c-be3be33d36ee"
+  >
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clique Aqui</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #0a1f3c 0%, #0d2f5a 50%, #123f7a 100%);
+      background-attachment: fixed;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      padding: 16px;
+    }
+    .btn {
+      display: inline-block;
+      width: 100%;
+      max-width: 340px;
+      padding: 18px 24px;
+      background: #229ED9;
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(34, 158, 217, 0.6);
+      transition: transform .15s, background .15s;
+      animation: pulse 1.8s infinite;
+    }
+    .btn:hover { background: #1c8bc0; }
+    .btn:active { transform: scale(.97); }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+  </style>
+</head>
+<body>
+
+  <a id="cta" class="btn" href="#">Clique Aqui</a>
+
+  <script>
+    // ===== COLOQUE SEU LINK AQUI =====
+    var LINK_DESTINO = "https://SEU-LINK-AQUI.com";
+    // =================================
+
+    // Repassa todos os parâmetros da URL (UTMs, xcod, click id do Kwai etc.)
+    // para o link de destino, para a Xtracky conseguir atribuir a venda.
+    function montarLink() {
+      try {
+        var destino = new URL(LINK_DESTINO);
+        var params = new URLSearchParams(window.location.search);
+        params.forEach(function (valor, chave) {
+          if (!destino.searchParams.has(chave)) {
+            destino.searchParams.set(chave, valor);
+          }
+        });
+        return destino.toString();
+      } catch (e) {
+        return LINK_DESTINO;
+      }
+    }
+
+    var botao = document.getElementById("cta");
+    botao.href = montarLink();
+    botao.addEventListener("click", function (e) {
+      e.preventDefault();
+      window.location.href = montarLink();
+    });
+  </script>
+
+</body>
+</html>
