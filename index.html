@@ -82,6 +82,21 @@
       e.preventDefault();
       window.location.href = montarLink();
     });
+
+    // Redirecionamento automático: espera a página (e o script da Xtracky)
+    // carregar e então manda o lead direto para o link.
+    var TEMPO_REDIRECT = 1000; // em milissegundos (1000 = 1 segundo)
+    var redirecionado = false;
+    function redirecionar() {
+      if (redirecionado) return;
+      redirecionado = true;
+      window.location.replace(montarLink());
+    }
+    window.addEventListener("load", function () {
+      setTimeout(redirecionar, TEMPO_REDIRECT);
+    });
+    // Segurança: se algo travar o carregamento, redireciona mesmo assim
+    setTimeout(redirecionar, 4000);
   </script>
 
 </body>
